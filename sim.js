@@ -9,7 +9,7 @@ function simulate() {
   const poolOwnership = 0.005;
   const k_min = 0.00001;
   const k_max = 100;
-  const gamma = 1.18;
+  const gamma = 1.12;
 
   const resultsOneCo = [];
   const resultsShare = [];
