@@ -6,7 +6,20 @@
   </head>
   <body>
     <div>
-      <div id="tester" style="width:1000px;height:600px;"></div>
+      <label>Starting Valuation</label>
+      <input id="startingValuation" type="number" value="3000000" />
+      <label>Ownership</label>
+      <input id="ownership" type="number" value="0.3" />
+      <label>Pool members</label>
+      <input id="poolMembers" type="number" value="20" />
+      <br />
+      <label>Pool ownership</label>
+      <input id="poolOwnership" type="number" value="0.005" />
+      <label>Run X times</label>
+      <input id="runXTimes" type="number" value="100" />
+      <button onclick="makeGraph()">Make graph</button>
+      <div id="logarithmic" style="width:1000px;height:600px;"></div>
+      <div id="linear" style="width:1000px;height:600px;"></div>
     </div>
   </body>
   <script>
@@ -17,30 +30,65 @@
       }
       return arr;
     };
-    const results = simulate();
-    TESTER = document.getElementById("tester");
-    console.log("ILUVU", results);
-    Plotly.newPlot(
-      TESTER,
-      [
+
+    const valIds = [
+      "startingValuation",
+      "ownership",
+      "poolMembers",
+      "runXTimes",
+      "poolOwnership"
+    ];
+
+    function makeGraph() {
+      const vals = {};
+      valIds.forEach(id => {
+        vals[id] = parseFloat(document.getElementById(id).value);
+      });
+      console.log(vals);
+      const results = simulate(vals);
+      const logarithmic = document.getElementById("logarithmic");
+      const linear = document.getElementById("linear");
+      console.log("ILUVU", results);
+      Plotly.newPlot(
+        logarithmic,
+        [
+          {
+            x: makeArray(99),
+            y: results.share,
+            name: "ShareShare"
+          },
+          {
+            x: makeArray(99),
+            y: results.solo,
+            name: "Solo"
+          }
+        ],
         {
-          x: makeArray(99),
-          y: results.share,
-          name: "ShareShare"
-        },
+          margin: { t: 0 },
+          yaxis: {
+            type: "log",
+            autorange: true
+          }
+        }
+      );
+      Plotly.newPlot(
+        linear,
+        [
+          {
+            x: makeArray(99),
+            y: results.share,
+            name: "ShareShare"
+          },
+          {
+            x: makeArray(99),
+            y: results.solo,
+            name: "Solo"
+          }
+        ],
         {
-          x: makeArray(99),
-          y: results.solo,
-          name: "Solo"
+          margin: { t: 0 }
         }
-      ],
-      {
-        margin: { t: 0 },
-        yaxis: {
-          type: "log",
-          autorange: true
-        }
-      }
-    );
+      );
+    }
   </script>
 </html>

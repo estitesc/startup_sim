@@ -1,12 +1,13 @@
 // testPowerLaw();
-simulate();
+// simulate();
 
-function simulate() {
-  const startingValuation = 3000000;
-  const ownership = 0.3;
-  const runXTimes = 100;
-  const poolMembers = 20;
-  const poolOwnership = 0.005;
+function simulate({
+  startingValuation,
+  ownership,
+  runXTimes,
+  poolMembers,
+  poolOwnership
+}) {
   const k_min = 0.00001;
   const k_max = 100;
   const gamma = 1.12;
