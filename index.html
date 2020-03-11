@@ -2,10 +2,41 @@
   <head>
     <title>startup outcome simulator</title>
     <script src="sim.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
   </head>
   <body>
     <div>
-      Nothing to say here.
+      <div id="tester" style="width:1000px;height:600px;"></div>
     </div>
   </body>
+  <script>
+    const makeArray = max => {
+      const arr = [];
+      for (let i = 0; i <= max; i++) {
+        arr.push(i);
+      }
+      return arr;
+    };
+    const results = simulate();
+    TESTER = document.getElementById("tester");
+    console.log("ILUVU", results);
+    Plotly.newPlot(
+      TESTER,
+      [
+        {
+          x: makeArray(99),
+          y: results.share,
+          name: "ShareShare"
+        },
+        {
+          x: makeArray(99),
+          y: results.solo,
+          name: "Solo"
+        }
+      ],
+      {
+        margin: { t: 0 }
+      }
+    );
+  </script>
 </html>
