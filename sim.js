@@ -10,7 +10,7 @@ function simulate() {
   const poolOwnership = 0.005;
   const k_min = 0.00001;
   const k_max = 100;
-  const gamma = 1.18;
+  const gamma = 1.12;
 
   for(var i=0; i<runXTimes; i++) {
     let oneCoMultiplier = power_law(k_min, k_max, Math.random(), gamma);
@@ -28,7 +28,7 @@ function simulate() {
 
     poolTotal = Math.ceil(poolTotal);
 
-    console.log(`result ${i} ${oneCoResult} / ${poolOwnership * poolTotal}`);
+    console.log(`result ${i} ${oneCoResult} / ${Math.ceil(poolOwnership * poolTotal)}`);
     // console.log("Individual Outcome", oneCoResult);
     // console.log("Pool Outcome", poolOwnership * poolTotal);
   }
