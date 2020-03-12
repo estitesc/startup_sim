@@ -1,0 +1,55 @@
+body {
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+.modebar{
+  display: none !important;
+}
+
+.topBar {
+  background-color: black;
+  color: white;
+  justify-content: center;
+  padding: 20px;
+}
+
+.logo {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  padding: 15px;
+}
+
+.title {
+  font-size: 20px;
+}
+
+.left {
+  padding: 20px;
+  padding-left: 30px;
+  padding-top: 50px;
+}
+
+.right {
+  padding: 30px;
+}
+
+.formLabels {
+  padding: 0px;
+  padding-left: 20px;
+}
+
+.formInput {
+  padding-left: 20px;
+}
+
+.simulateButton {
+  background-color: rgb(186, 206, 243);
+  width: 17vh;
+  padding: 10px;
+}
+
+.simulateHolder {
+  padding-left: 5vh;
+  padding-top: 2vh;
+}
