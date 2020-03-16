@@ -12,7 +12,7 @@ function randn_bm() {
   return num;
 }
 
-const getDilution = () => randn_bm() * 50;
+const getDilution = () => 10 + randn_bm() * 70;
 
 const getDilutionMultiplier = () => {
   const dilution = getDilution();
