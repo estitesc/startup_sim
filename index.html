@@ -1,142 +1,207 @@
 <html>
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>startup outcome simulator</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="sim.js"></script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    
     <link rel="stylesheet" type="text/css" href="style.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed&display=swap" rel="stylesheet">
+    <script>
+      $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+      })
+    </script>
   </head>
   <body>
     <div class="main">
       <div class="topBar row">
         <div class="logo">
-          <img src="logo_white.png" width="80px"/>
+          <img src="logo_3_white.png" width="80px"/>
         </div>
         <div class="title">
           startup outcome simulator
         </div>
       </div>
-      <div class="row content">
-        <div class="left col-md-4">
-          <div class="row">
-            <div class="formInputs">
-              <div class="formInput row">
-                <div class="col-md-6">
-                  <label>My start valuation</label>
-                </div>
-                <div class="col-md-6">
-                  <input id="myStartingValuation" type="number" value="3000000" />
-                </div>
+      <div class="container-fluid">
+        <div class="row content">
+          <div class="col-xs-12 col-md-4 left">
+            <div class="formInput row">
+              <label class="presetLabel">Presets</label>
+              <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="right" title="Preset options for three cases. The optimistic case puts you in a pool with other promising companies. The pessimistic case puts you with companies much worse than your own. Average is in between the two.">
+                ?
+              </button>
+            </div>
+            <div class="formInput row">
+              <div class="col-xs-4">
+                <button class="presetButton">Pessimistic</button>
               </div>
-              <div class="formInput row">
-                <div class="col-md-6">
-                  <label>Other's start valuation</label>
-                </div>
-                <div class="col-md-6">
-                  <input id="othersStartingValuation" type="number" value="3000000" />
-                </div>
+              <div class="col-xs-4">
+                <button class="presetButton">Average</button>
               </div>
-              <div class="formInput row">
-                <div class="col-md-6">
-                  <label>Ownership</label>
-                </div>
-                <div class="col-md-6">
-                  <input id="ownership" type="number" value="0.3" />
-                </div>
+              <div class="col-xs-4">
+                <button class="presetButton">Optimistic</button>
               </div>
-              <div class="formInput row">
-                <div class="col-md-6">
-                  <label>Pool members</label>
-                </div>
-                <div class="col-md-6">
-                  <input id="poolMembers" type="number" value="20" />
-                </div>
+            </div>
+            <div class="formInput row">
+              <div class="col-xs-8">
+                <label>My initial valuation</label>
+                <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="right" title="Some information about what this is.">
+                  ?
+                </button>
               </div>
-              <div class="formInput row">
-                <div class="col-md-6">
-                  <label>Pool ownership</label>
-                </div>
-                <div class="col-md-6">
-                  <input id="poolOwnership" type="number" value="0.005" />
-                </div>
+              <div class="col-xs-4">
+                <input class="millions" id="myStartingValuation" type="number" value="3000000" />
               </div>
-              <div class="formInput row">
-                <div class="col-md-6">
-                  <label>Run X times</label>
-                </div>
-                <div class="col-md-6">
-                  <input id="runXTimes" type="number" value="100" />
-                </div>
+            </div>
+            <div class="formInput row">
+              <div class="col-xs-8">
+                <label>Other's initial valuation</label>
+                <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="right" title="Some information about what this is.">
+                  ?
+                </button>
               </div>
-              <div class="formInput row">
-                <div class="col-md-6">
-                  <label>My chance of raising</label>
-                </div>
-                <div class="col-md-6">
-                  <select id="myRaiseChance" value="1.1">
-                    <option value="0.98">1 in 1</option>
-                    <option value="1.1" selected>1 in 2</option>
-                    <option value="1.175">1 in 4</option>
-                    <option value="1.22">1 in 8</option>
-                  </select>
-                </div>
+              <div class="col-xs-4">
+                <input class="millions" id="othersStartingValuation" type="number" value="3000000" />
               </div>
-              <div class="formInput row">
-                <div class="col-md-6">
-                  <label>My best outcome</label>
-                </div>
-                <div class="col-md-6">
-                  <select id="myBestOutcome" value="100">
-                    <option value="50">50x</option>
-                    <option value="100" selected>100x</option>
-                    <option value="250">250x</option>
-                    <option value="500">500x</option>
-                    <option value="1000">1000x</option>
-                  </select>
-                </div>
+            </div>
+            <div class="formInput row">
+              <div class="col-xs-8">
+                <label>Ownership</label>
+                <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="right" title="Some information about what this is.">
+                  ?
+                </button>
               </div>
-              <div class="formInput row">
-                <div class="col-md-6">
-                  <label>Other's chance to raise</label>
-                </div>
-                <div class="col-md-6">
-                  <select id="othersRaiseChance" value="1.1">
-                    <option value="0.98">1 in 1</option>
-                    <option value="1.1" selected>1 in 2</option>
-                    <option value="1.175">1 in 4</option>
-                    <option value="1.22">1 in 8</option>
-                  </select>
-                </div>
+              <div class="col-xs-4">
+                <input class="percent" id="ownership" type="number" value="30" /> %
               </div>
-              <div class="formInput row">
-                <div class="col-md-6">
-                  <label>Other's best outcome</label>
-                </div>
-                <div class="col-md-6">
-                  <select id="othersBestOutcome" value="100">
-                    <option value="50">50x</option>
-                    <option value="100" selected>100x</option>
-                    <option value="250">250x</option>
-                    <option value="500">500x</option>
-                    <option value="1000">1000x</option>
-                  </select>
-                </div>
+            </div>
+            <div class="formInput row">
+              <div class="col-xs-8">
+                <label>Allocation to pool</label>
+                <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="right" title="Some information about what this is.">
+                  ?
+                </button>
               </div>
-              <div class="formInput simulateHolder row">
-                <button class="simulateButton" onclick="makeGraph()">Simulate</button>
+              <div class="col-xs-4">
+                <input class="percent" id="poolAllocation" type="number" value="10" /> %
+              </div>
+            </div>
+            <div class="formInput row">
+              <div class="col-xs-8">
+                <label>Pool members</label>
+                <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="right" title="Some information about what this is.">
+                  ?
+                </button>
+              </div>
+              <div class="col-xs-4">
+                <input class="members" id="poolMembers" type="number" value="20" />
+              </div>
+            </div>
+            <div class="formInput row">
+              <div class="col-xs-8">
+                <label>My chance of raising</label>
+                <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="right" title="Some information about what this is.">
+                  ?
+                </button>
+              </div>
+              <div class="col-xs-4">
+                <select id="myRaiseChance" value="1.1">
+                  <option value="0.98">1 in 1</option>
+                  <option value="1.1" selected>1 in 2</option>
+                  <option value="1.175">1 in 4</option>
+                  <option value="1.22">1 in 8</option>
+                </select>
+              </div>
+            </div>
+            <div class="formInput row">
+              <div class="col-xs-8">
+                <label>My best outcome</label>
+                <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="right" title="Some information about what this is.">
+                  ?
+                </button>
+              </div>
+              <div class="col-xs-4">
+                <select id="myBestOutcome" value="100">
+                  <option value="50">50x</option>
+                  <option value="100" selected>100x</option>
+                  <option value="250">250x</option>
+                  <option value="500">500x</option>
+                  <option value="1000">1000x</option>
+                </select>
+              </div>
+            </div>
+            <div class="formInput row">
+              <div class="col-xs-8">
+                <label>Other's chance to raise</label>
+                <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="right" title="Some information about what this is.">
+                  ?
+                </button>
+              </div>
+              <div class="col-xs-4">
+                <select id="othersRaiseChance" value="1.1">
+                  <option value="0.98">1 in 1</option>
+                  <option value="1.1" selected>1 in 2</option>
+                  <option value="1.175">1 in 4</option>
+                  <option value="1.22">1 in 8</option>
+                </select>
+              </div>
+            </div>
+            <div class="formInput row">
+              <div class="col-xs-8">
+                <label>Other's best outcome</label>
+                <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="right" title="Some information about what this is.">
+                  ?
+                </button>
+              </div>
+              <div class="col-xs-4">
+                <select id="othersBestOutcome" value="100">
+                  <option value="50">50x</option>
+                  <option value="100" selected>100x</option>
+                  <option value="250">250x</option>
+                  <option value="500">500x</option>
+                  <option value="1000">1000x</option>
+                </select>
+              </div>
+            </div>
+            <div class="formInput simulateHolder row">
+              <div class="col-xs-6"><button class="simulateButton" onclick="makeGraph()">Simulate</button></div>
+              <div class="col-xs-6">
+                <select id="chartType" value="log">
+                  <option value="log" selected>Log-scaled Y-axis</option>
+                  <option value="linear">Linear-scaled Y-axis</option>
+                </select>
               </div>
             </div>
           </div>
+          <!-- <div class="right col-md-8 col-xs-12">
+            <div class="chart" id="log_chart"></div>
+            <div class="chart" id="linear_chart"></div>
+          </div> -->
         </div>
-        <div class="right col-md-8">
-          <div id="logarithmic" style="width:100%;height:70vh;"></div>
-          <div id="linear" style="width:100%;height:70vh;"></div>
+        <div class="row footer">
+          content of row
         </div>
       </div>
     </div>
   </body>
   <script>
+    $('#chartType').change(function () {
+      $('#linear_chart').hide();
+      $('#log_chart').hide();
+      $(`#${$('#chartType').val()}_chart`).show();
+    })
+
     const makeArray = max => {
       const arr = [];
       for (let i = 0; i <= max; i++) {
@@ -165,8 +230,8 @@
       });
       console.log(vals);
       const results = simulate(vals);
-      const logarithmic = document.getElementById("logarithmic");
-      const linear = document.getElementById("linear");
+      const logarithmic = document.getElementById("log_chart");
+      const linear = document.getElementById("linear_chart");
       console.log("ILUVU", results);
       Plotly.newPlot(
         logarithmic,
@@ -208,6 +273,7 @@
           margin: { t: 0 }
         }
       );
+      $('#linear_chart').hide();
     }
   </script>
 </html>
