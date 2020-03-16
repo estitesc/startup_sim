@@ -5,9 +5,8 @@ function simulate({
   myStartingValuation,
   othersStartingValuation,
   ownership,
-  runXTimes,
+  poolAllocation,
   poolMembers,
-  poolOwnership,
   myRaiseChance,
   othersRaiseChance,
   myBestOutcome,
@@ -16,16 +15,18 @@ function simulate({
   const k_min = 0.00001;
   const k_max = 100;
   const gamma = 1.12;
+  const runXTimes = 100;
 
   const resultsOneCo = [];
   const resultsShare = [];
+  const poolOwnership = (poolAllocation / 100) / poolMembers;
 
   for (var i = 0; i < runXTimes; i++) {
     let oneCoMultiplier = power_law(k_min, myBestOutcome, Math.random(), myRaiseChance);
     oneCoMultiplier =
       oneCoMultiplier < 1 ? 0 : Math.floor(oneCoMultiplier * 10) / 10;
     const oneCoResult = Math.floor(
-      myStartingValuation * ownership * oneCoMultiplier
+      myStartingValuation * (ownership/100) * oneCoMultiplier
     );
 
     let poolTotal = 0;
@@ -41,7 +42,7 @@ function simulate({
     const shareResult =
       Math.floor(
         myStartingValuation *
-          (ownership - poolMembers * poolOwnership) *
+          ((ownership / 100) - poolMembers * poolOwnership) *
           oneCoMultiplier
       ) +
       poolOwnership * poolTotal;
