@@ -7,7 +7,7 @@ body {
 }
 
 .topBar {
-  background-color: black;
+  background-color: rgb(67, 167, 120);
   color: white;
   padding: 20px;
 }
@@ -135,7 +135,8 @@ body {
 
 .footer {
   margin-top: 7vh;
-  background-color: black;
+  /* background-color: rgb(107, 204, 175); */
+  background-color: rgb(67, 167, 120);
   height: 15vh;
   text-align: center;
   padding-top: 3vh;
