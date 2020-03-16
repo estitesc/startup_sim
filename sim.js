@@ -17,7 +17,6 @@ const getDilution = () => 10 + randn_bm() * 70;
 const getDilutionMultiplier = () => {
   const dilution = getDilution();
   const result = (100 - dilution) / 100;
-  console.log({ dilution, result });
   return result;
 };
 function simulate({
