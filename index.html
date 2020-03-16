@@ -250,6 +250,11 @@
       const results = simulate(vals);
       const logarithmic = document.getElementById("log_chart");
       const linear = document.getElementById("linear_chart");
+
+      $('#chart_placeholder').hide();
+      $('#linear_chart').show();
+      $('#log_chart').show();
+
       console.log("ILUVU", results);
       Plotly.newPlot(
         logarithmic,
@@ -292,6 +297,8 @@
         }
       );
       $('#linear_chart').hide();
+      $('#log_chart').hide();
+      $(`#${$('#chartType').val()}_chart`).show();
     }
   </script>
 </html>
