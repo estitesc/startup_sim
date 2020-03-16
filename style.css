@@ -113,6 +113,10 @@ body {
   width: 60%;
 }
 
+.dilution {
+  width: 35%;
+}
+
 .chart {
   width: 95%;
   height: 70vh;

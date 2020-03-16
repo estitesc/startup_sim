@@ -109,6 +109,18 @@
               </div>
             </div>
             <div class="formInput row">
+              <div class="col-xs-7">
+                <label>Dilution range</label>
+                <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="How many other companies would be included in your pool?">
+                  ?
+                </button>
+              </div>
+              <div class="col-xs-5">
+                <input class="dilution" id="dilutionLower" type="number" value="20" />% -
+                <input class="dilution" id="dilutionUpper" type="number" value="40" />%
+              </div>
+            </div>
+            <div class="formInput row">
               <div class="col-xs-8">
                 <label>My chance of raising</label>
                 <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="What do you think your chances of raising initial funding are? If you already raised or you are sure you can raise, you'd put '1 in 1'">
@@ -227,6 +239,8 @@
       $('#ownership').val(30);
       $('#poolAllocation').val(10);
       $('#poolMembers').val(20);
+      $('#dilutionLower').val(0);
+      $('#dilutionUpper').val(20);
       $('#myRaiseChance').val('1.1');
       $('#othersRaiseChance').val('1.22');
       $('#myBestOutcome').val(500);
@@ -239,6 +253,8 @@
       $('#ownership').val(30);
       $('#poolAllocation').val(10);
       $('#poolMembers').val(20);
+      $('#dilutionLower').val(10);
+      $('#dilutionUpper').val(50);
       $('#myRaiseChance').val('1.1');
       $('#othersRaiseChance').val('1.175');
       $('#myBestOutcome').val(100);
@@ -251,6 +267,8 @@
       $('#ownership').val(30);
       $('#poolAllocation').val(10);
       $('#poolMembers').val(20);
+      $('#dilutionLower').val(10);
+      $('#dilutionUpper').val(50);
       $('#myRaiseChance').val('1.1');
       $('#othersRaiseChance').val('1.1');
       $('#myBestOutcome').val(250);
@@ -271,6 +289,8 @@
       "ownership",
       "poolAllocation",
       "poolMembers",
+      "dilutionUpper",
+      "dilutionLower",
       "myRaiseChance",
       "othersRaiseChance",
       "myBestOutcome",
