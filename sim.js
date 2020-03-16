@@ -12,10 +12,10 @@ function randn_bm() {
   return num;
 }
 
-const getDilution = () => 10 + randn_bm() * 70;
+const getDilution = (lower, upper) => lower + randn_bm() * (upper - lower);
 
-const getDilutionMultiplier = () => {
-  const dilution = getDilution();
+const getDilutionMultiplier = (lower, upper) => {
+  const dilution = getDilution(lower, upper);
   const result = (100 - dilution) / 100;
   return result;
 };
@@ -28,7 +28,9 @@ function simulate({
   myRaiseChance,
   othersRaiseChance,
   myBestOutcome,
-  othersBestOutcome
+  othersBestOutcome,
+  dilutionLower,
+  dilutionUpper
 }) {
   const k_min = 0.00001;
   const k_max = 100;
@@ -52,7 +54,7 @@ function simulate({
       myStartingValuation *
         (ownership / 100) *
         oneCoMultiplier *
-        getDilutionMultiplier()
+        getDilutionMultiplier(dilutionLower, dilutionUpper)
     );
 
     let poolTotal = 0;
@@ -65,7 +67,9 @@ function simulate({
       );
       multiplier = multiplier < 1 ? 0 : Math.floor(multiplier * 10) / 10;
       const poolResult = Math.floor(
-        othersStartingValuation * multiplier * getDilutionMultiplier()
+        othersStartingValuation *
+          multiplier *
+          getDilutionMultiplier(dilutionLower, dilutionUpper)
       );
       poolTotal += poolResult;
     }
