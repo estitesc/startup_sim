@@ -1,6 +1,25 @@
 testPowerLaw();
 // simulate();
 
+function randn_bm() {
+  let u = 0,
+    v = 0;
+  while (u === 0) u = Math.random(); //Converting [0,1) to (0,1)
+  while (v === 0) v = Math.random();
+  let num = Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
+  num = num / 10.0 + 0.5; // Translate to 0 -> 1
+  if (num > 1 || num < 0) return randn_bm(); // resample between 0 and 1
+  return num;
+}
+
+const getDilution = () => randn_bm() * 50;
+
+const getDilutionMultiplier = () => {
+  const dilution = getDilution();
+  const result = (100 - dilution) / 100;
+  console.log({ dilution, result });
+  return result;
+};
 function simulate({
   myStartingValuation,
   othersStartingValuation,
@@ -10,7 +29,7 @@ function simulate({
   myRaiseChance,
   othersRaiseChance,
   myBestOutcome,
-  othersBestOutcome,
+  othersBestOutcome
 }) {
   const k_min = 0.00001;
   const k_max = 100;
@@ -19,21 +38,36 @@ function simulate({
 
   const resultsOneCo = [];
   const resultsShare = [];
-  const poolOwnership = (poolAllocation / 100) / poolMembers;
+  const poolOwnership = poolAllocation / 100 / poolMembers;
 
   for (var i = 0; i < runXTimes; i++) {
-    let oneCoMultiplier = power_law(k_min, myBestOutcome, Math.random(), myRaiseChance);
+    let oneCoMultiplier = power_law(
+      k_min,
+      myBestOutcome,
+      Math.random(),
+      myRaiseChance
+    );
     oneCoMultiplier =
       oneCoMultiplier < 1 ? 0 : Math.floor(oneCoMultiplier * 10) / 10;
     const oneCoResult = Math.floor(
-      myStartingValuation * (ownership/100) * oneCoMultiplier
+      myStartingValuation *
+        (ownership / 100) *
+        oneCoMultiplier *
+        getDilutionMultiplier()
     );
 
     let poolTotal = 0;
     for (var poolMember = 0; poolMember < poolMembers - 1; poolMember++) {
-      let multiplier = power_law(k_min, othersBestOutcome, Math.random(), othersRaiseChance);
+      let multiplier = power_law(
+        k_min,
+        othersBestOutcome,
+        Math.random(),
+        othersRaiseChance
+      );
       multiplier = multiplier < 1 ? 0 : Math.floor(multiplier * 10) / 10;
-      const poolResult = Math.floor(othersStartingValuation * multiplier);
+      const poolResult = Math.floor(
+        othersStartingValuation * multiplier * getDilutionMultiplier()
+      );
       poolTotal += poolResult;
     }
 
@@ -42,7 +76,7 @@ function simulate({
     const shareResult =
       Math.floor(
         myStartingValuation *
-          ((ownership / 100) - poolMembers * poolOwnership) *
+          (ownership / 100 - poolMembers * poolOwnership) *
           oneCoMultiplier
       ) +
       poolOwnership * poolTotal;
