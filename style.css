@@ -56,6 +56,7 @@ body {
 
 .right {
   padding: 30px;
+  position: relative;
 }
 
 @media only screen and (max-width: 600px) {
@@ -113,8 +114,9 @@ body {
 }
 
 .chart {
-  width: 100%;
+  width: 95%;
   height: 70vh;
+  position: absolute;
 }
 
 @media only screen and (max-width: 600px) {
@@ -126,14 +128,21 @@ body {
   }
 }
 
+.placeholder {
+  padding: 6vh;
+  font-size: 20px;
+}
+
 .footer {
+  margin-top: 7vh;
   background-color: black;
   height: 15vh;
-  margin-top: -70vh;
+  text-align: center;
+  padding-top: 3vh;
 }
 
 @media only screen and (max-width: 600px) {
   .footer {
-    margin-top: -40vh;
+    display: none;
   }
 }

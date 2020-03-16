@@ -56,7 +56,7 @@
             <div class="formInput row">
               <div class="col-xs-8">
                 <label>My initial valuation</label>
-                <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="right" title="Some information about what this is.">
+                <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="What do you think your company's valuation will be in the initial raise?">
                   ?
                 </button>
               </div>
@@ -67,7 +67,7 @@
             <div class="formInput row">
               <div class="col-xs-8">
                 <label>Other's initial valuation</label>
-                <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="right" title="Some information about what this is.">
+                <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="For the other companies in your ShareShare pool, what do you think their likely initial valuation would be, if they were to raise.">
                   ?
                 </button>
               </div>
@@ -78,7 +78,7 @@
             <div class="formInput row">
               <div class="col-xs-8">
                 <label>Ownership</label>
-                <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="right" title="Some information about what this is.">
+                <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="What percent of your company would you initially own?">
                   ?
                 </button>
               </div>
@@ -89,7 +89,7 @@
             <div class="formInput row">
               <div class="col-xs-8">
                 <label>Allocation to pool</label>
-                <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="right" title="Some information about what this is.">
+                <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Of that percent that you own, how much of it would you allocate to a ShareShare pool?">
                   ?
                 </button>
               </div>
@@ -100,7 +100,7 @@
             <div class="formInput row">
               <div class="col-xs-8">
                 <label>Pool members</label>
-                <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="right" title="Some information about what this is.">
+                <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="How many other companies would be included in your pool?">
                   ?
                 </button>
               </div>
@@ -111,7 +111,7 @@
             <div class="formInput row">
               <div class="col-xs-8">
                 <label>My chance of raising</label>
-                <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="right" title="Some information about what this is.">
+                <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="What do you think your chances of raising initial funding are? If you already raised or you are sure you can raise, you'd put '1 in 1'">
                   ?
                 </button>
               </div>
@@ -127,7 +127,7 @@
             <div class="formInput row">
               <div class="col-xs-8">
                 <label>My best outcome</label>
-                <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="right" title="Some information about what this is.">
+                <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="In an absolutely best case outcome, what multiplier of your initial valuation can you imagine your company exiting at? Try to be realistic about how big it can get.">
                   ?
                 </button>
               </div>
@@ -144,7 +144,7 @@
             <div class="formInput row">
               <div class="col-xs-8">
                 <label>Other's chance to raise</label>
-                <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="right" title="Some information about what this is.">
+                <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="For the other companies in your pool, on average, what chance of raising initial capital do you think they have?">
                   ?
                 </button>
               </div>
@@ -160,7 +160,7 @@
             <div class="formInput row">
               <div class="col-xs-8">
                 <label>Other's best outcome</label>
-                <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="right" title="Some information about what this is.">
+                <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="For the other companies in your pool, on average, what multiple of their starting valuation do you think they can exit at?">
                   ?
                 </button>
               </div>
@@ -187,11 +187,30 @@
           <div class="right col-md-8 col-xs-12">
             <div class="chart" id="log_chart"></div>
             <div class="chart" id="linear_chart"></div>
+            <div class="chart" id="chart_placeholder">
+              <div class="placeholder">
+                <p>
+                  Welcome to Startup Outcome Simulator!
+                </p>
+                <p>
+                  This tool allows you to simulate the distribution of outcomes for founder liquidity in starting a company. It shows results based on 100 trials in the case of going solo or participating in a ShareShare equity pool.
+                </p>
+                <p>
+                  The upside of doing a ShareShare depends heavily on your beliefs about the relative potential of the companies in your pool compared to your own. As such, you can input separate assumptions for your own company vs. those you are pooled with.
+                </p>
+                <p>
+                  The model is based on <a href="https://www.sethlevine.com/archives/2014/08/venture-outcomes-are-even-more-skewed-than-you-think.html">a study conducted by Correlation Ventures</a> that looked at the venture returns of 21,000 financings from the period of 2004-2013. We modeled our power-law distribution to match its outcomes. Because their study only looks at financed companies, we include a parameter for how likely you think it is for your company to be financed.
+                </p>
+                <p>
+                  To get started, click "simulate".
+                </p>
+              </div>
+            </div>
           </div>
         </div>
-        <!-- <div class="row footer">
-          content of row
-        </div> -->
+        <div class="row footer">
+          Copyright Black Lotus Inc.
+        </div>
       </div>
     </div>
   </body>
