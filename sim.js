@@ -58,55 +58,6 @@ function simulate({
   };
 }
 
-function simulateWithArray() {
-  const outcomeArray = [
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2,
-    2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3,
-    3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5, 5,
-    5, 5, 5, 5, 5, 5, 5, 5, 6, 7, 8, 9, 10, 10, 12, 14, 16, 20, 30, 50,
-  ];
-  const startingValuation = 3000000;
-  const ownership = 0.3;
-  const runXTimes = 100;
-  const poolMembers = 20;
-  const poolOwnership = 0.005;
-
-  for (var i = 0; i < runXTimes; i++) {
-    const oneCoResult =
-      startingValuation *
-      ownership *
-      outcomeArray[getRandomInt(0, outcomeArray.length - 1)];
-    let poolTotal = 0;
-    for (var poolMember = 0; poolMember < poolMembers - 1; poolMember++) {
-      const poolResult =
-        startingValuation *
-        outcomeArray[getRandomInt(0, outcomeArray.length - 1)];
-      poolTotal += poolResult;
-      // console.log(`result${i}: `, poolResult);
-    }
-
-    console.log(`result ${i} ${oneCoResult} / ${poolOwnership * poolTotal}`);
-    // console.log("Individual Outcome", oneCoResult);
-    // console.log("Pool Outcome", poolOwnership * poolTotal);
-  }
-}
-
 function testPowerLaw() {
   const runXTimes = 100;
   const k_min = 0.00001;
